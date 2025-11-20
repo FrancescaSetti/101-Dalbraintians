@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<!--
+===============================================================================
+  HTML Script – 101 DalBraintians ▸ fMRI Dataset from Multimodal (A, V, AV)
+  Naturalistic Stimulation with the action movie "101 Dalmatians"
+
+  Description:
+    This website presents the 101 DalBraintians fMRI dataset, acquired during
+    auditory (A), visual (V), and audiovisual (AV) naturalistic stimulation
+    using the movie "101 Dalmatians." It provides scientific context, dataset
+    access, and interactive visualizations for research and educational purposes.
+
+  Author:
+    Francesca Setti
+
+  Date:
+  November 2025
+
+  Copyright:
+    © 2025 101 DalBraintians – All rights reserved.
+===============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>101 Dalbraintians — Naturalistic fMRI Study</title>
+  <link rel="icon" type="image/png" href="assets/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- GSAP + Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/MotionPathPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+<!-- ===============================
+     SECTION: Header and Navigation
+=============================== -->
+  <header>
+    <div class="brand">101 Dalbraintians</div>
+    <nav>
+      <a href="https://x.com/francesca_7i" target="_blank">X</a>
+      <a href="https://www.linkedin.com/in/francesca-setti-a23909125/" target="_blank">LinkedIn</a>
+      <a href="https://momilab.imtlucca.it/research/semper/" target="_blank">SEMper Lab</a>
+    </nav>
+  </header>
+
+  <main>
+<!-- ===============================
+     SECTION: Hero
+=============================== -->
+    <section class="hero hybrid-hero" id="hero">
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="poster">
+            <img id="heroImage" src="assets/101_Dalbraintians.jpg" alt="101 Dalbraintians poster">
+            <canvas id="neuralOverlay"></canvas>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <h1 class="hero-title">Mapping brain functions during naturalistic stimulation</h1>
+          <p class="hero-subtitle">
+            A <strong>fMRI journey</strong> through perception, language, and emotion.  
+            <em>101 Dalbraintians</em> brings together neuroscience, computation, and storytelling  
+            to reveal how the human brain activity synchronizes to the natural flow of a movie.
+          </p>
+          <a href="#dataset-info" class="cta-scroll">
+            <span class="scroll-text">Explore the Dataset</span>
+            <span class="scroll-icon">↓</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+<!-- ===============================
+     SECTION: Intro
+=============================== -->
+<section class="intro">
+  <div class="section-title">Dataset Overview</div>
+  <div class="section-subtitle">
+    <em>A multimodal fMRI dataset combining manual annotation and computational modeling</em>
+  </div>
+
+  <p class="section-desc">
+    <strong>101 Dalbraintians</strong> is an open-access <em>multimodal naturalistic fMRI dataset</em> that captures how the human brain perceives, understands, and feels during real-life experience.  
+    Using the full-length movie <em>One Hundred and One Dalmatians</em>, this resource integrates synchronized <strong>neural, visual, and auditory data</strong> with detailed manual annotations and advanced computational modeling.
+  </p>
+
+  <p class="section-desc">
+    The dataset was designed to provide a comprehensive tool for investigating <strong>neural dynamics in naturalistic conditions</strong>, offering unprecedented access to the perceptual, cognitive, and emotional dimensions of movie watching.  
+    It enables researchers to explore processes spanning <em>language comprehension, social cognition, memory, attention, emotion,</em> and <em>cross-modal perception</em>.
+  </p>
+
+  <p class="section-desc">
+    Each second of the movie has been <strong>manually annotated</strong> across multiple perceptual and semantic categories, and modeled through <strong>computational frameworks</strong> that extract both low-level (visual and acoustic) and high-level (semantic and categorical) features.  
+    This unique combination allows users to link <em>brain activity</em> with the movie’s <em>multisensory structure</em> and <em>narrative meaning</em>.
+  </p>
+
+  <p class="section-desc">
+    Designed for transparency, reproducibility, and reuse, <strong>101 Dalbraintians</strong> invites the scientific community to explore, extend, and reinterpret its contents — from the mechanisms of sensory processing to the complexity of human cognition.
+  </p>
+</section>
+
+<!-- ===============================
+     SECTION:Participants Info
+=============================== -->
+<section id="dataset-info">
+  <div class="section-title">Participants and Experimental Conditions</div>
+  <p class="section-desc">
+    Fifty subjects took part in the study: typically developed (TD) individuals and sensory deprived (SD) subjects, who lack visual or auditory experience since birth.      
+    Three samples of TD individuals underwent a different experimental condition consisting in the presentation of one version of the same movie: 
+    either the full multimodal audiovisual (AV) (N = 10, 35 ± 13 years, 8 females), the auditory (A) (N = 10, 39 ± 17 years, 7 females) or the visual (V) (N = 10, 37 ± 15 years, 5 females) one. 
+    SD individuals comprising blind (N = 11, mean age 46 ± 14 years, 3 females) and deaf (N = 9, mean age 24 ± 4, 5 females) participants were presented with the A and V movie conditions respectively
+    
+    The following visual summarizes sample size (N ± SD) across groups. 
+  </p>
+
+<div class="charts-row">
+  <!-- Sample size chart -->
+  <div class="chart-container">
+    <h4 style="text-align:center; font-weight:600;">Participants per group</h4>
+    <canvas id="participantsChart"></canvas>
+  </div>
+
+  <!-- Age + SD chart -->
+  <div class="chart-container">
+    <h4 style="text-align:center; font-weight:600;">Age distribution ± SD</h4>
+    <canvas id="ageChart"></canvas>
+  </div>
+</div>
+
+
+</section>
+
+<section class="manual-notations">
+  <div class="section-title">Annotations of Movie Categories</div>
+
+  <p class="section-desc">
+    The <strong>categorical annotation model</strong> was designed to capture the richness of naturalistic movie perception by describing,
+    second by second, the visual and auditory information conveyed by <em>One Hundred and One Dalmatians</em>. 
+    Two parallel annotation sets were created to reflect the distinct nature of the <strong>visual</strong> and <strong>auditory</strong> streams.  
+    While the narrator’s voice provides a global description, the visual track reveals localized perceptual content.  
+    Together, they form a comprehensive taxonomy of the movie’s perceptual and narrative structure.
+  </p>
+
+  <div class="category-card">
+    <h4 class="subsection-title">Visual Categories</h4>
+    <p class="section-desc">
+      Visual annotations were defined within one-second windows, labeling all salient foreground elements and supplementary details related to color, motion, or narrative importance.
+    </p>
+    <ul class="category-list">
+      <li><strong>Animals:</strong> all species portrayed on screen, from domestic pets to wildlife.</li>
+      <li><strong>Body-parts:</strong> isolated limbs or features such as a hand, leg, or paw, excluding faces.</li>
+      <li><strong>Human faces / Animal faces:</strong> close-ups of any face clearly visible regardless of viewpoint.</li>
+      <li><strong>Houses:</strong> single buildings or cityscapes, including farms, castles, façades.</li>
+      <li><strong>Location:</strong> the setting of the action, distinguishing indoor and outdoor environments.</li>
+      <li><strong>Landscape:</strong> natural or artificial broader spatial contexts (e.g., countryside or urban scenes).</li>
+      <li><strong>Objects:</strong> human-made artifacts and tools handled or visible on screen.</li>
+      <li><strong>Person:</strong> depictions of the full body or torso; isolated faces belong to <em>faces</em>.</li>
+      <li><strong>Vehicles:</strong> recognizable transportation means or salient parts (e.g., car hood, wheel).</li>
+    </ul>
+  </div>
+
+  <div class="category-card">
+    <h4 class="subsection-title">Auditory Categories</h4>
+    <p class="section-desc">
+      The auditory stream was annotated using the same 1-second sampling, labeling all foreground and background sounds that contribute to the narrative.
+    </p>
+    <ul class="category-list">
+      <li><strong>Animals:</strong> all animal vocalizations or noises clearly distinguishable from background.</li>
+      <li><strong>Houses:</strong> verbal or acoustic references to buildings and built environments (e.g., “outside the castle gate”).</li>
+      <li><strong>Objects:</strong> sounds or mentions of human-made items (e.g., clinking teacups, ringing bells).</li>
+      <li><strong>Person:</strong> human speech and activity sounds (dialogues, footsteps, coughing, laughter).</li>
+      <li><strong>Vehicles:</strong> vehicle noises and onomatopoeic descriptions (“beep”, “vroom”, “screech”).</li>
+    </ul>
+  </div>
+
+  <div class="category-card">
+    <h4 class="subsection-title">Movie-Editing and Linguistic Features</h4>
+    <p class="section-desc">
+      Complementary annotations capture the <strong>formal cinematic structure</strong>—the editor’s visual and auditory choices shaping narrative continuity and engagement.
+    </p>
+    <ul class="category-list">
+      <li><strong>Scenes:</strong> narrative units characterized by stable location, characters, and temporal continuity.</li>
+      <li><strong>Camera cuts:</strong> abrupt changes in camera angle or viewpoint between consecutive shots.</li>
+      <li><strong>Audio descriptions:</strong> narrator’s voice-over conveying visual or emotional information.</li>
+      <li><strong>Dialogues:</strong> spoken exchanges and monologues forming the linguistic backbone of the movie.</li>
+      <li><strong>Soundtracks:</strong> musical scores and songs accompanying or enhancing visual flow.</li>
+      <li><strong>Subtitles:</strong> on-screen text transcribing spoken narrative or describing environmental sounds.</li>
+      <li><strong>Text in frame:</strong> any written element embedded in the visual scene (e.g., signs, letters).</li>
+    </ul>
+  </div>
+
+  <p class="section-desc">
+    The annotation process spanned nearly <strong>200 hours</strong> of expert manual labeling, ensuring high temporal precision (1 s) and semantic consistency across modalities.  
+    This multi-layered framework bridges low-level perceptual features and higher-order narrative constructs.
+  </p>
+</section>
+
+<!-- ====================================
+     SECTION: Visual and Auditory Streams
+========================================= -->
+    <section class="streams">
+      <div class="section-title">Visual Stream — Visual Categories</div>
+      <div class="film-strip">
+
+  <div class="frames-bg" id="framesBg">
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+
+  </div>
+
+        <div class="frames" id="framesRow">
+          <img src="assets/film_frames/frame1.png">
+            <img src="assets/film_frames/frame2.png">
+            <img src="assets/film_frames/frame4.png">
+            <img src="assets/film_frames/frame5.png">
+            <img src="assets/film_frames/frame6.png">
+            <img src="assets/film_frames/frame7.png">
+            <img src="assets/film_frames/frame8.png">
+            <img src="assets/film_frames/frame9.png">
+            <img src="assets/film_frames/frame10.png">
+            <img src="assets/film_frames/frame11.png">
+            <img src="assets/film_frames/frame12.png">
+            <img src="assets/film_frames/frame13.png">
+            <img src="assets/film_frames/frame14.png">
+            <img src="assets/film_frames/frame15.png">
+            <img src="assets/film_frames/frame16.png">
+            <img src="assets/film_frames/frame17.png">
+            <img src="assets/film_frames/frame18.png">
+            <img src="assets/film_frames/frame19.png">
+            <img src="assets/film_frames/frame20.png">
+            <img src="assets/film_frames/frame21.png">
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:32px;">Auditory Stream — Auditory Categories</div>
+      <div class="audio-strip" id="audioStrip">
+        <canvas id="wave"></canvas>
+      </div>
+    </section>
+    
+<!-- ===============================
+     SECTION: Computational Models
+================================== -->
+<section class="computational-models">
+  <div class="section-title">Computational Models</div>
+  <p class="section-desc">
+    The computational modeling framework describes how the visual and auditory movie stimuli were decomposed into <strong>low-level sensory</strong>, 
+    <strong>high-level representational</strong>, and <strong>semantic</strong> feature spaces. 
+    These models complement the manual annotations by providing an automated and hierarchical description of the sensory and cognitive dimensions of the movie.
+  </p>
+
+  <div class="category-card">
+    <h4 class="subsection-title">Low-level Visual Model — Motion Energy</h4>
+    <p class="section-desc">
+      Motion energy features were derived from <em>space-time Gabor filters</em> at multiple orientations, spatial, and temporal frequencies (0, 2, and 4 Hz).  
+      Each two-second movie segment was characterized by 4,715 descriptors, capturing the fine-grained motion and direction energy in the frames.  
+      This model mimics early visual processing in cortical areas such as V1 and MT, representing sensitivity to temporal frequency and motion direction.  
+      The MATLAB implementation used (<a href="https://github.com/gallantlab/motion_energy_matlab" target="_blank">Gallant Lab</a>) follows the approach of Nishimoto et al. (2011).
+    </p>
+
+  </div>
+  
+   <div class="category-card">
+    <h4 class="subsection-title">Low-level Auditory Model — Power Spectrum</h4>
+    <p class="section-desc">
+      The low-level auditory model was based on the <strong>power spectral density</strong> of the sound waveform, computed via Welch’s method using Gaussian windows.  
+      The resulting 449-dimensional representation describes signal power across frequencies up to ~15 kHz, 
+      capturing the spectral energy distribution and envelope dynamics over 2-second intervals.
+    </p>
+
+  </div>
+
+  <div class="category-card">
+    <h4 class="subsection-title">High-level Visual Model — VGG-19 Feature Space</h4>
+    <p class="section-desc">
+      The <strong>VGG-19</strong> convolutional neural network was used to extract hierarchical representations of the visual stream.  
+      Intermediate layer outputs (ReLU3_1) captured low/mid-level statistics similar to early visual cortex, 
+      while deeper layers (ReLU6) encoded object- and scene-level semantics, supporting complex visual recognition processes.  
+      These features provide a bridge between visual input and neural activity in higher-order visual areas.
+    </p>
+
+  </div>
+
+
+  <div class="category-card">
+    <h4 class="subsection-title">High-level Auditory Model — VGGish Feature Space</h4>
+    <p class="section-desc">
+      The <strong>VGGish</strong> network — a VGG-like architecture trained on the AudioSet dataset — was employed to extract complex auditory representations.  
+      Features from layer ReLU5.1 describe higher-order auditory content including harmonic patterns, rhythm, and semantic aspects such as speech and music.  
+      This allows for a robust mapping between sound characteristics and cortical auditory responses.
+    </p>
+
+  </div>
+
+  <div class="category-card">
+    <h4 class="subsection-title">Compositional Semantic Features — GPT-4 Embeddings</h4>
+    <p class="section-desc">
+      To capture narrative meaning, the full English script of the movie was segmented at the sentence level and processed using <strong>GPT-4</strong> 
+      (text-embedding-3-small, 1536-dimensional output).  
+      These contextual embeddings encode rich semantic relationships, encompassing syntax, pragmatics, and thematic continuity throughout the narrative.  
+      This model enables the exploration of brain activity associated with conceptual and linguistic comprehension beyond sensory modality.
+    </p>
+
+  </div>
+</section>
+
+<!-- ===============================
+     SECTION: Dataset Information
+=============================== -->
+    <section>
+      <div class="section-title">Explore the dataset</div>
+      <p class="section-desc">
+        Defaced structural images, as well as raw and preprocessed fMRI data, were organized according to the BIDS structure and are available on Figshare. 
+        The code to preprocess (f)MRI data is publicly available in the repository as well under code/ subdirectory. 
+        It includes bash scripts for the preprocessing of anatomical and functional data using ANTs, AFNI and FSL software. Use the link below to open the repository (placeholder).
+        Additionally, the code for the ISC analysis is available on OSF repository and provided below for extended research reproducibility.
+      </p>
+      <div style="display:flex; flex-wrap:wrap; gap:12px;">
+        <a href="https://figshare.com/s/de0d52bf08280cf0c4bd" target="_blank" rel="noopener" style="background:var(--accent);color:white;padding:10px 14px;border-radius:8px;font-weight:700;">Open Figshare repository</a>
+        <a href="https://osf.io/j8x6h/" target="_blank" rel="noopener" style="background:#9ec8a9;color:white;padding:10px 14px;border-radius:8px;font-weight:700;">Open OSF repository</a>
+      </div>
+    </section>
+
+<!-- ===============================
+     SECTION: Publications
+=============================== -->
+    <section>
+      <div class="section-title">Selected Publications</div>
+
+      <p class="section-desc">
+        <strong>Setti, F.</strong>, Bottari D., Leo A., Diano M., Bruno V., Tinti C., Cecchetti L., Garbarini F., Pietrini P., Ricciardi E., Handjaras G.  
+        <em>101 Dalmatians: a multimodal naturalistic fMRI dataset in typical development and congenital sensory loss.</em> 
+         Sci Data 12, 1792 (2025). 
+      </p>
+      <p class="section-desc">
+        <strong>Setti, F.</strong>, Bottari D., Leo A., Diano M., Bruno V., Tinti C., Cecchetti L., Garbarini F., Pietrini P., Ricciardi E., Handjaras G.  
+        <em>101 Dalmatians: a multimodal naturalistic fMRI dataset in typical development and congenital sensory loss.</em>  
+        <a href="https://figshare.com/s/de0d52bf08280cf0c4bd" target="_blank">figshare (2025)</a>
+      </p>
+      <p class="section-desc">
+        Marras, L., Teresi, L., Simonelli, <strong>Setti, F.</strong>, Ingenito, A., Handjaras, G., & Ricciardi, E.   
+        <em>Neural representation of action features across sensory modalities: A multimodal fMRI study.</em>  
+        NeuroImage, 121439 (2025).
+      </p>
+      <p class="section-desc">
+        Orsenigo, D., *<strong>Setti, F.</strong>*, Pagani, M., Petri, G., Tamietto, M., Luppi, A., & Ricciardi, E. 
+        <em>Beyond reorganization: Intrinsic cortical hierarchies constrain experience-dependent plasticity in sensory-deprived humans.</em>  
+        bioRxiv,(2025).
+      </p>
+      <p class="section-desc">
+        <strong>Setti, F.</strong>, Handjaras, G., Bottari, D., Leo, A., Diano, M., Bruno, V., … & Ricciardi, E.  
+        <em>A modality-independent proto-organization of human multisensory areas.</em>  
+        Nature Human Behaviour, 7(3), 397–410 (2023).
+      </p>
+      <p class="section-desc">
+        Lettieri, G., Handjaras, G., Cappello, E. M., <strong>Setti, F.</strong>, Bottari, D., Bruno, V., … & Cecchetti, L.  
+        <em>Dissecting abstract, modality-specific and experience-dependent coding of affect in the human brain.</em>  
+        Science Advances, 10(10), eadk6840 (2024).
+      </p>
+      <p class="section-desc">
+        Lettieri, G., Handjaras, G., <strong>Setti, F.</strong>, Cappello, E. M., Bruno, V., Diano, M., … & Cecchetti, L.  
+        <em>Default and control network connectivity dynamics track the stream of affect at multiple timescales.</em>  
+        Social Cognitive and Affective Neuroscience, 17(5), 461–469 (2022).
+      </p>
+    </section>
+<!-- ===============================
+     SECTION: Footer
+=============================== -->
+    <footer>
+      © 2025 — 101 Dalbraintians Project | 
+      <a href="https://scholar.google.com/citations?user=HKvMMiEAAAAJ&hl=en&oi=ao" target="_blank" style="color:var(--accent);font-weight:600;">Francesca Setti</a> · 
+      <a href="https://github.com/francescasetti" target="_blank" style="color:var(--accent);font-weight:600;">GitHub Repository</a>
+    </footer>
+  </main>
+
+  <!-- External JavaScript -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
