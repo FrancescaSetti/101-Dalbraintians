@@ -45,7 +45,8 @@ This interface visualizes dataset structure, annotation taxonomy, and modeling l
 
 ## 📚 Citation
 If using the dataset or website, please cite:
-> Setti, F. et al. (2025). *101 Dalbraintians: a multimodal naturalistic fMRI dataset in typical development and congenital sensory loss*. Figshare.
+> Setti, F., Bottari, D., Leo, A. et al. 101 Dalmatians: a multimodal naturalistic fMRI dataset in typical development and congenital sensory loss. Sci Data 12, 1792 (2025). https://doi.org/10.1038/s41597-025-06077-3
+> Setti, F. et al. *101 Dalmatians: a multimodal naturalistic fMRI dataset in typical development and congenital sensory loss*. figshare https://doi.org/10.6084/m9.figshare.28264178 (2025).
 
 ## 📜 License
 This website and its design are © 2025 Francesca Setti. All rights reserved.
